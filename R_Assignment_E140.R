@@ -1,6 +1,6 @@
 ### Assignment ####
 
-# This is my assignment for the course Basic statistical programing
+# This is my assignment for the course Basic statistical programming
 # as part of the EDSD prep courses. The course was given by Christian Dudel in
 # October 2021
 
