@@ -4,6 +4,8 @@
 # as part of the EDSD prep courses. The course was given by Christian Dudel in
 # October 2021
 
+# another contributor was P. Lenz (does not have GitHub)
+
 ####### loading R packages #########
 
 library(readstata13)
@@ -14,7 +16,7 @@ library(downloader)
 
 ####### Question 1 #######
 
-### loading data
+### loading trial data from SOAP
 
 url_dta <- "https://www.diw.de/documents/dokumentenarchiv/
             17/diw_01.c.412698.de/soep_lebensz_en.zip" # url for download
@@ -24,18 +26,18 @@ unzip ("dataset.zip", exdir = ".") # unzips file into current working directory
 dt <- read.dta(file ="soep_lebensz_en.dta",  # reads dta file from current directory
                convert.factors = F) 
 
-# Question 1b
+### Question 1b
 # number of unique individuals in data set according to id
 
 u_ind <- length(unique(x=dt$id))
 print(paste0("There are: ", u_ind, " unique individuals in the data set."))
 
-# Question1c,
+### Question 1c,
 
 # number of observations per year
 tab_1c <- dplyr::count(dt, year)
 
-# Question 1d
+#### Question 1d
 dt_04 <- dt %>% 
   filter(year==max(year)) # finding most recent year
 
@@ -55,7 +57,8 @@ male_props <- dt_prop %>%
   filter(sex == 0) %>% # filter for males
   pull(prop_per)      # pulls value from prop_per column
 
-# in case we want answer sentences :D 
+
+# printing answer sentences
 print(paste0("Proportion of females is: ", female_props, "%"))
 
 print(paste0("Proportion of males is: ", male_props, "%"))
@@ -76,9 +79,13 @@ male_health <- dt_health %>%
   filter(sex == 0) %>% # filter for males
   pull(avg_health)     # pulls value from dataframe
 
+
+#printing answer sentences
 print(paste0("Averge subjective health of females is: ", female_health))
 
 print(paste0("Averge subjective health of males is: ", male_health))
+
+
 
 ######## Question 2 #######
 
@@ -93,8 +100,8 @@ jpn <-readHMDweb("JPN","E0per",
                     password = myHMDpassword,
                     fixup = T)
 
-# visualization of the trend in life expectancy at birth
 
+### visualization of the trend in life expectancy at birth
 #specifying colors for graphs
 col <- c("Females" = "coral3", "Males" = "cornflowerblue")
   
